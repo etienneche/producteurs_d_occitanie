@@ -1,0 +1,2 @@
+class Mercurial < ApplicationRecord
+end
