@@ -1,0 +1,2 @@
+module MercurialsHelper
+end
