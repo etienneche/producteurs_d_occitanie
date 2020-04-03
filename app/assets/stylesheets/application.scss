@@ -15,6 +15,17 @@
  */
 
 @import "bootstrap";
+@import "categories";
+@import "home";
+@import "mercurials";
+@import "navbar";
+@import "pages";
+@import "room_messages";
+@import "rooms";
+@import "users";
+
+
+
 
 body {
   color: #333333;
@@ -23,4 +34,11 @@ body {
   margin: 0px !important;
 
   font-size: 14px;
+}
+
+.avatar {
+  max-height:30px;
+  border-radius: 15px;
+  width:auto;
+  vertical-align:middle;
 }

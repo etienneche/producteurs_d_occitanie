@@ -1,7 +1,12 @@
-<h2>Sign up</h2>
+<h2>Connexion</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :Vous_êtes %>
+    <%= f.collection_check_boxes :user_type, [[1, 'Client'] ,[2, 'Member']], :first, :last %>
+  </div>
+
   <div class="field">
     <%= f.label :username %><br />
     <%= f.email_field :username, required: true, placeholder: "Votre nom d'utilisateur ici" %>
@@ -13,7 +18,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :mot_de_passe %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -21,7 +26,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :confirmez_votre_mot_de_passe %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
