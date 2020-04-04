@@ -1,38 +1,31 @@
 <h2>Connexion</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :Vous_êtes %>
-    <%= f.collection_check_boxes :user_type, [[1, 'Client'] ,[2, 'Member']], :first, :last %>
-  </div>
+<%= simple_form_for @user, url: new_user_registration_path(new_user_registration_path),
+  wrapper_mappings: {
+    check_boxes:    :vertical_collection,
+    radio_buttons:  :vertical_collection,
+    file:           :custom_file,
+    boolean:        :custom_boolean_switch
+  } do |f| %>
+  <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.email_field :username, required: true, placeholder: "Votre nom d'utilisateur ici" %>
+  <%= f.input :email %>
 
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= f.input :password %>
 
-  <div class="field">
-    <%= f.label :mot_de_passe %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :confirmez_votre_mot_de_passe %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Creer mon Compte" %>
-  </div>
+  <%= f.input :user_type, as: :radio_buttons,
+    collection: ['Client', 'Membre'] %>
+
+
+  <%= f.input :category_id, as: :check_boxes,
+    collection: [
+"GMS", "CC", "Restaurant", "Producteur" ,"Transformateur" ,"Institutionnel" ,"Consommateur"] %>
+
+
+
+  <%= f.button :submit %>
 <% end %>
 
 <%= render "devise/shared/links" %>
