@@ -1,27 +1,26 @@
 <h2>Connexion</h2>
 
-<%= simple_form_for @user, url: new_user_registration_path(new_user_registration_path),
-  wrapper_mappings: {
-    check_boxes:    :vertical_collection,
-    radio_buttons:  :vertical_collection,
-    file:           :custom_file,
-    boolean:        :custom_boolean_switch
-  } do |f| %>
+<%= simple_form_for @user do |f| %>
   <%= f.error_notification %>
-
+  <%= f.input :username %>
+  <%= f.input :name %>
   <%= f.input :email %>
 
   <%= f.input :password %>
 
 
-
+  <%  user_types = User.user_types.keys.map {|k| [k,User.user_types[k]]} %>
   <%= f.input :user_type, as: :radio_buttons,
-    collection: ['Client', 'Membre'] %>
+    collection: user_types, value_method: :first, label_method: :last %>
 
 
-  <%= f.input :category_id, as: :check_boxes,
-    collection: [
-"GMS", "CC", "Restaurant", "Producteur" ,"Transformateur" ,"Institutionnel" ,"Consommateur"] %>
+
+
+  <%# categories = Category.category_types %>
+  <%=  f.input :category_id, collection: Category.category_types.keys, value_method: Category.category_types.values %>
+
+  <%#= f.input :category_id, as: :radio_buttons,
+    collection: categories,value_method: :last, label_method: categories  %>
 
 
 
