@@ -9,15 +9,13 @@
   <%= f.input :password %>
 
 
-  <%  user_types = User.user_types.keys.map {|k| [k,User.user_types[k]]} %>
+  <%  user_types = User.user_types.map {|k| [k, User.user_types.keys[k]]} %>
   <%= f.input :user_type, as: :radio_buttons,
-    collection: user_types, value_method: :first, label_method: :last %>
+    collection: user_types %>
 
 
 
-
-  <%# categories = Category.category_types %>
-  <%=  f.input :category_id, collection: Category.category_types.keys, value_method: Category.category_types.values %>
+  <%=  f.input :category_id, collection: Category.all , value_method: :id, label_method: :category_type,  input_html: {class:"select2"} %>
 
   <%#= f.input :category_id, as: :radio_buttons,
     collection: categories,value_method: :last, label_method: categories  %>
